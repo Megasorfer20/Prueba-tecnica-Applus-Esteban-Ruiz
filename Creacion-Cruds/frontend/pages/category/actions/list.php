@@ -1,5 +1,6 @@
 <?php
 include "update.php";
+include "delete.php";
 $url = "http://localhost/Prueba-tecnica-Applus/Creacion-Cruds/backend/controller/category.controller.php?act=getAll";
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -49,6 +50,7 @@ curl_close($curl);
                         </td>
                         <td>
                         <?= insertModal($out->id,$out->name)?>
+                        <?= insertDelete($out->id)?>
                         </td>
                     </tr>
 

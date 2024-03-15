@@ -39,6 +39,12 @@ switch ($_GET['act']) {
         }
         echo json_encode($response);
         break;
+    case 'delete':
+        $category->setId($_GET['id']);
+        $category->delete();
+        $response = ['success' => true];
+        echo json_encode($response);
+        break;
 }
 
 ?>

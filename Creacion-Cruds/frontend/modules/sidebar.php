@@ -12,7 +12,7 @@
 
         <li class="nav-item <?php if($routesArray[3]=="" || $routesArray[3]=="product"): ?> active <?php endif ?>">
           <a href="/Prueba-tecnica-Applus/Creacion-Cruds/product" class="nav-link ">
-            <i class="nav-icon fa fa-dropbox"></i>
+            <i class="nav-icon fa fa-bookmark-o"></i>
             <p>
               Productos
             </p>
