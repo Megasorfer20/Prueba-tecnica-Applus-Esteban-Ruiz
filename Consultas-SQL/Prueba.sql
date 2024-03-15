@@ -62,7 +62,11 @@ INSERT INTO `prestamo` (`id`, `libro_id`, `fecha_prestamo`, `fecha_devolucion`, 
 -- con el nombre del usuario que los tiene prestados. Incluye también la
 -- fecha de préstamo y la fecha de devolución.
 
-SELECT l.titulo AS titulo_libro, l.autor AS autor_libro, CONCAT(u.nombre," ",u.apellido) AS nombre_usuario, p.fecha_prestamo, p.fecha_devolucion FROM `prestamo` AS `p` INNER JOIN libro AS l ON p.libro_id = l.id INNER JOIN usuario AS u ON p.usuario_id = u.id WHERE p.fecha_devolucion > CURDATE() OR p.fecha_devolucion IS NULL;
+SELECT l.titulo AS titulo_libro, l.autor AS autor_libro, CONCAT(u.nombre," ",u.apellido) AS nombre_usuario, p.fecha_prestamo, p.fecha_devolucion
+	FROM `prestamo` AS `p`
+	INNER JOIN libro AS l ON p.libro_id = l.id
+	INNER JOIN usuario AS u ON p.usuario_id = u.id
+	WHERE p.fecha_devolucion > CURDATE() OR p.fecha_devolucion IS NULL;
 
 
 -- 2. Consulta 2 - Libros No Devueltos en 7 días:
@@ -70,4 +74,8 @@ SELECT l.titulo AS titulo_libro, l.autor AS autor_libro, CONCAT(u.nombre," ",u.a
 -- más de 7 días y aún no han sido devueltos. Incluye el nombre del
 -- usuario que los tiene prestados y la fecha de préstamo.
 
-SELECT l.titulo AS titulo_libro, l.autor AS autor_libro, CONCAT(u.nombre," ",u.apellido) AS nombre_usuario, p.fecha_prestamo FROM `prestamo` AS `p` INNER JOIN libro AS l ON p.libro_id = l.id INNER JOIN usuario AS u ON p.usuario_id = u.id WHERE DATE_ADD( p.fecha_prestamo, INTERVAL 7 DAY) <= CURDATE() AND p.fecha_devolucion IS NULL;
+SELECT l.titulo AS titulo_libro, l.autor AS autor_libro, CONCAT(u.nombre," ",u.apellido) AS nombre_usuario, p.fecha_prestamo
+	FROM `prestamo` AS `p`
+	INNER JOIN libro AS l ON p.libro_id = l.id
+	INNER JOIN usuario AS u ON p.usuario_id = u.id
+	WHERE DATE_ADD( p.fecha_prestamo, INTERVAL 7 DAY) <= CURDATE() AND p.fecha_devolucion IS NULL;
