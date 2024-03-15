@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-green navbar-light">
+<nav class="main-header navbar navbar-expand navbar-blue navbar-light">
 
     <ul class="navbar-nav">
         <li class="nav-item">

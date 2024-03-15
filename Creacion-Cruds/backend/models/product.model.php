@@ -15,7 +15,6 @@ class Products extends Conection
     private $price;
     private $createdAt;
     private $updatedAt;
-    protected $dbcnx;
 
     public function __construct(
         $id = 0,
@@ -109,7 +108,7 @@ class Products extends Conection
     public function obtainAll()
     {
         try {
-            $stm = $this->dbcnx->prepare("SELECT * FROM product");
+            $stm = $this->dbcnx->prepare("SELECT product.id, product.name, category.name AS category, product.price, product.createdAt, product.updatedAt FROM product INNER JOIN category ON product.category = category.id;");
             $stm->execute();
             return $stm->fetchAll();
         } catch (Exception $errorXD) {

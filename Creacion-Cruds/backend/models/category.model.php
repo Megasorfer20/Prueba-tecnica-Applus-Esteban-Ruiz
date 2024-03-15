@@ -12,7 +12,6 @@ class Category extends Conection
     private $name;
     private $createdAt;
     private $updatedAt;
-    protected $dbcnx;
 
     public function __construct(
         $id = 0,

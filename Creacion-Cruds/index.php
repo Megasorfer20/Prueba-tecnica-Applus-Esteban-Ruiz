@@ -1,3 +1,8 @@
+<?php
+$routesArray = explode("/", $_SERVER['REQUEST_URI']);
+$routesArray = array_filter($routesArray);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -54,26 +59,45 @@
     <script src="./frontend/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="./frontend/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
 
-        <?php include "./frontend/modules/navbar.php";  ?>
-        <?php include "./frontend/modules/sidebar.php";  ?>
+        <?php include "./frontend/modules/navbar.php"; ?>
+        <?php include "./frontend/modules/sidebar.php"; ?>
 
         <div class="content-wrapper">
+            <?php
+            if (!empty($routesArray[3])) {
+                if ($routesArray[3] == "product" || $routesArray[3] == "category") {
+                    include "./frontend/pages/" . $routesArray[3] . "/" . $routesArray[3] . ".php";
+                }
+            } else {
+                include "./frontend/pages/product/product.php";
+            }
 
+            ?>
         </div>
 
-        <?php include "./frontend/modules/footer.php";  ?>
+        <?php include "./frontend/modules/footer.php"; ?>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
