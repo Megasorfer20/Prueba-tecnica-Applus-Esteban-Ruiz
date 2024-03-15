@@ -22,8 +22,8 @@ $routesArray = array_filter($routesArray);
     <link rel="stylesheet" href="./frontend/assets/plugins/adminlte/css/adminlte.min.css">
     <!-- Fa Fa Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./frontend/node_modules/font-awesome/css/font-awesome.min.css">
-    <link href="./frontend/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="./frontend/packages/font-awesome/css/font-awesome.min.css">
+    <link href="./frontend/packages/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <!-- DataTables -->
     <link rel="stylesheet" href="./frontend/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="./frontend/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -57,7 +57,7 @@ $routesArray = array_filter($routesArray);
     <script src="./frontend/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="./frontend/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="./frontend/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="./frontend/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="./frontend/packages/bootstrap/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"

@@ -17,8 +17,8 @@ function insertModal($id, $name)
                 </div>
                 <form id="uptCategoryForm<?= $id ?>" action="#" method="post">
                     <div class="modal-body">
-                        <label for="name<?= $id ?>">Nombre Categoria</label>
-                        <input type="text" name="name<?= $id ?>" id="name<?= $id ?>" value="<?= $name ?>">
+                        <label for="name<?= $id ?>" class="form-label">Nombre Categoria</label>
+                        <input type="text" name="name<?= $id ?>" id="name<?= $id ?>" value="<?= $name ?>" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

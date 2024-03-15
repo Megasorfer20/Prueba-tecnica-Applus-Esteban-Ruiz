@@ -18,6 +18,7 @@
 
   <div class="container-fluid">
 
+    <?php include "actions/insert.php"; ?>
     <?php include "actions/list.php"; ?>
 
   </div>

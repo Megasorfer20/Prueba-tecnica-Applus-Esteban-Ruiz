@@ -1,4 +1,7 @@
 <?php
+include "update.php";
+include "delete.php";
+
 $url = "http://localhost/Prueba-tecnica-Applus/Creacion-Cruds/backend/controller/product.controller.php?act=getAll";
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -55,7 +58,8 @@ curl_close($curl);
                             <?= $out->updatedAt == null ? "Null" : $out->updatedAt; ?>
                         </td>
                         <td>
-                            <button>Hola Temporal</button>
+                            <?= insertModal($out->id, $out->name, $out->price) ?>
+                            <?= insertDelete($out->id) ?>
                         </td>
                     </tr>
 

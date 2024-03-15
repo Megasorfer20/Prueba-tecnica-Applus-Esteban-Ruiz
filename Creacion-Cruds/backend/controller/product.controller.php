@@ -17,13 +17,37 @@ switch ($_GET['act']) {
         echo json_encode($data);
         break;
     case 'post':
-        # code...
+        if (isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['category']) && !empty($_POST['category']) && isset($_POST['price']) && !empty($_POST['price'])) {
+            $product->setName($_POST['name']);
+            $product->setCategory($_POST['category']);
+            $product->setPrice($_POST['price']);
+            $product->setCreatedAt(date('Y-m-d'));
+            $product->insertOne();
+            $response = ['success' => true];
+        } else {
+            $response = ['error' => true, 'message' => 'Se deben rellenar todos los campos'];
+        }
+        echo json_encode($response);
         break;
     case 'update':
-        # code...
+        if (isset($_POST["name" . $_GET['id']]) && !empty($_POST["name" . $_GET['id']]) && isset($_POST['category']) && !empty($_POST['category']) && isset($_POST['price']) && !empty($_POST['price'])) {
+            $product->setName($_POST["name" . $_GET['id']]);
+            $product->setCategory($_POST['category']);
+            $product->setPrice($_POST['price']);
+            $product->setUpdatedAt(date('Y-m-d'));
+            $product->setId($_GET['id']);
+            $product->update();
+            $response = ['success' => true];
+        } else {
+            $response = ['error' => true, 'message' => 'Se deben rellenar todos los campos'];
+        }
+        echo json_encode($response);
         break;
     case 'delete':
-        # code...
+        $product->setId($_GET['id']);
+        $product->delete();
+        $response = ['success' => true];
+        echo json_encode($response);
         break;
 }
 
