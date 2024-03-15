@@ -11,7 +11,7 @@ abstract class Conection
     protected $dbcnx;
     public function __construct()
     {
-        $this->dbcnx = new PDO(DBTYPE . ":host=" . DBHOST.";dbname=".DBNAME, DBUSER,DBPASSWORD,[PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        $this->dbcnx = new PDO(DBTYPE . ":host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPASSWORD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
     }
 }
 

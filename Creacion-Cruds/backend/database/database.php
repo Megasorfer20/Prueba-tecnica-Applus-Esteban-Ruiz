@@ -21,3 +21,5 @@ if (!defined("DBUSER")) {
 if (!defined("DBPASSWORD")) {
     define("DBPASSWORD", $env['DBPASSWORD']);
 }
+
+?>
