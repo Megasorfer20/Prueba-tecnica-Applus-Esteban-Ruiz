@@ -23,8 +23,8 @@ class Products extends Conection
         $name = "",
         $category = "",
         $price = "",
-        $createdAt = "",
-        $updatedAt = "",
+        $createdAt = null,
+        $updatedAt = null,
     ) {
         $this->id = $id;
         $this->code = $code;
@@ -36,74 +36,127 @@ class Products extends Conection
         parent::__construct();
     }
 
-    function getId()
+    public function getId()
     {
         return $this->id;
     }
 
-    function getCode()
+    public function getCode()
     {
         return $this->code;
     }
 
-    function getName()
+    public function getName()
     {
         return $this->name;
     }
 
-    function getCategory()
+    public function getCategory()
     {
         return $this->category;
     }
 
-    function getPrice()
+    public function getPrice()
     {
         return $this->price;
     }
 
-    function getCreatedAt()
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    function getUpdatedAt()
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    function setId($id)
+    public function setId($id)
     {
         $this->id = $id;
     }
 
-    function setCode($code)
+    public function setCode($code)
     {
         $this->code = $code;
     }
 
-    function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
 
-    function setCategory($category)
+    public function setCategory($category)
     {
         $this->category = $category;
     }
 
-    function setPrice($price)
+    public function setPrice($price)
     {
         $this->price = $price;
     }
 
-    function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
-    function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function obtainAll()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("SELECT * FROM product");
+            $stm->execute();
+            return $stm->fetchAll();
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function obtainOne()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("SELECT * FROM product WHERE id = ?");
+            $stm->execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function insertOne()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("INSERT INTO product (code, name, category, price, createdAt, updatedAt) values (?,?,?,?,?,?)");
+            $stm->execute([$this->code, $this->name, $this->category, $this->price, $this->createdAt, $this->updatedAt]);
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function delete()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("DELETE FROM product WHERE id = ?");
+            $stm->execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function update()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("UPDATE product SET code = ?, name = ?, category = ?, price = ?, updatedAt = ? WHERE id = ?");
+            $stm->execute([$this->code, $this->name, $this->category, $this->price, $this->updatedAt, $this->id]);
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
     }
 }
 

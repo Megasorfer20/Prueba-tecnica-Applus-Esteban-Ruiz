@@ -18,7 +18,7 @@ class Category extends Conection
         $id = 0,
         $name = "",
         $createdAt = "",
-        $updatedAt = "",
+        $updatedAt = null,
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -27,44 +27,97 @@ class Category extends Conection
         parent::__construct();
     }
 
-    function getId()
+    public function getId()
     {
         return $this->id;
     }
 
-    function getName()
+    public function getName()
     {
         return $this->name;
     }
 
-    function getCreatedAt()
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    function getUpdatedAt()
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
-    function setId($id)
+    public function setId($id)
     {
         $this->id = $id;
     }
 
-    function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
 
-    function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
-    function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function obtainAll()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("SELECT * FROM category");
+            $stm->execute();
+            return $stm->fetchAll();
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function obtainOne()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("SELECT * FROM category WHERE id = ?");
+            $stm->execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function insertOne()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("INSERT INTO category (name, createdAt, updatedAt) values (?,?,?)");
+            $stm->execute([$this->name, $this->createdAt, $this->updatedAt]);
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function delete()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("DELETE FROM category WHERE id = ?");
+            $stm->execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
+    }
+
+    public function update()
+    {
+        try {
+            $stm = $this->dbcnx->prepare("UPDATE category SET name = ?, updatedAt = ? WHERE id = ?");
+            $stm->execute([$this->name, $this->updatedAt, $this->id]);
+        } catch (Exception $errorXD) {
+            return $errorXD->getMessage();
+        }
     }
 
 }
