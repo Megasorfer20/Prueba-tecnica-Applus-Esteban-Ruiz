@@ -8,13 +8,12 @@ Encuentra el título y el autor de los libros actualmente prestados, junto con e
 SELECT l.titulo AS titulo_libro, l.autor AS autor_libro, CONCAT(u.nombre," ",u.apellido) AS nombre_usuario, p.fecha_prestamo, p.fecha_devolucion
 FROM `prestamo` AS `p`
 INNER JOIN libro AS l ON p.libro_id = l.id
-INNER JOIN usuario AS u ON p.usuario_id = u.id
-WHERE p.fecha_devolucion > CURDATE() OR p.fecha_devolucion IS NULL;
+INNER JOIN usuario AS u ON p.usuario_id = u.id;
 ```
 
 **OUTPUT**
 
-![image](https://github.com/Megasorfer20/Prueba-tecnica-Applus-Esteban-Ruiz/assets/123566003/d8893eb1-69c6-4bbc-a040-8cac1f609cca)
+![image](https://github.com/Megasorfer20/Prueba-tecnica-Applus-Esteban-Ruiz/assets/123566003/1a051968-bffc-47b3-b7ee-71693878fc7c)
 
 
 ## Consulta 2 - Libros No Devueltos en 7 días:
