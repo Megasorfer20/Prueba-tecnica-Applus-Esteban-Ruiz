@@ -17,13 +17,27 @@ switch ($_GET['act']) {
         echo json_encode($data);
         break;
     case 'post':
-        # code...
+        if (isset($_POST['name']) && !empty($_POST['name'])) {
+            $category->setName($_POST['name']);
+            $category->setCreatedAt(date('Y-m-d'));
+            $category->insertOne();
+            $response = ['success' => true];
+        } else {
+            $response = ['error' => true, 'message' => 'Se deben rellenar todos los campos'];
+        }
+        echo json_encode($response);
         break;
     case 'update':
-        # code...
-        break;
-    case 'delete':
-        # code...
+        if (isset($_POST["name" . $_GET['id']]) && !empty($_POST["name" . $_GET['id']])) {
+            $category->setName($_POST["name" . $_GET['id']]);
+            $category->setUpdatedAt(date('Y-m-d'));
+            $category->setId($_GET['id']);
+            $category->update();
+            $response = ['success' => true];
+        } else {
+            $response = ['error' => true, 'message' => 'Se deben rellenar todos los campos'];
+        }
+        echo json_encode($response);
         break;
 }
 
